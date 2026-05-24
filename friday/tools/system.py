@@ -22,3 +22,36 @@ def register(mcp):
             "machine": platform.machine(),
             "python_version": platform.python_version(),
         }
+
+    @mcp.tool()
+    def cari_uang_mode() -> str:
+        """
+        Activates 'Cari Uang' (Hustle) mode. Opens Spotify, GitHub, Burp Suite, and Antigravity IDE.
+        Use this when the user says 'saya mau cari uang'.
+        """
+        import webbrowser
+        import os
+        import subprocess
+
+        try:
+            # Open Spotify
+            os.system("start spotify:")
+            
+            # Open GitHub
+            webbrowser.open("https://github.com/Fauzan-Aldi")
+            
+            # Open BurpSuite
+            burp_path = r"C:\Program Files\BurpSuiteCommunity\BurpSuiteCommunity.exe"
+            if os.path.exists(burp_path):
+                subprocess.Popen([burp_path])
+            else:
+                os.system("start burpsuite")
+                
+            # Open Antigravity IDE
+            antigravity_path = r"C:\Users\Asus\AppData\Local\Programs\Antigravity IDE\Antigravity IDE.exe"
+            if os.path.exists(antigravity_path):
+                subprocess.Popen([antigravity_path])
+                
+            return "Workspace is ready, Fauzan. Let's make some money."
+        except Exception as e:
+            return f"Error activating cari uang mode: {str(e)}"
